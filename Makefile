@@ -44,7 +44,7 @@ GFXBUILD	:=	$(BUILD)
 APP_TITLE := pong
 APP_DESCRIPTION := pong for your 3ds
 APP_AUTHOR = Amy
-ICON := images/icon.png
+ICON := assets/icon.png
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -192,14 +192,14 @@ clean:
 # Custom rules
 #---------------------------------------------------------------------------------
 
-banner.bin: images/banner.png audio/banner.wav
-	bannertool makebanner -i images/banner.png -a audio/banner.wav -o $(BUILD)/banner.bin
+banner.bin: assets/banner.png assets/banner.wav
+	bannertool makebanner -i assets/banner.png -a assets/banner.wav -o $(BUILD)/banner.bin
 
-$(TARGET).3ds: $(TARGET).elf $(TARGET).smdh misc/$(TARGET).rsf
-	makerom -f cci -o $(TARGET).3ds -rsf misc/$(TARGET).rsf -target d -exefslogo -elf $(TARGET).elf -icon $(TARGET).smdh -banner build/banner.bin
+$(TARGET).3ds: $(TARGET).elf $(TARGET).smdh assets/$(TARGET).rsf
+	makerom -f cci -o $(TARGET).3ds -rsf assets/$(TARGET).rsf -target d -exefslogo -elf $(TARGET).elf -icon $(TARGET).smdh -banner build/banner.bin
 
-$(TARGET).cia: $(TARGET).elf $(TARGET).smdh misc/$(TARGET).rsf
-	makerom -f cia -o $(TARGET).cia -rsf misc/$(TARGET).rsf -target t -exefslogo -elf $(TARGET).elf -icon $(TARGET).smdh -banner build/banner.bin
+$(TARGET).cia: $(TARGET).elf $(TARGET).smdh assets/$(TARGET).rsf
+	makerom -f cia -o $(TARGET).cia -rsf assets/$(TARGET).rsf -target t -exefslogo -elf $(TARGET).elf -icon $(TARGET).smdh -banner build/banner.bin
 
 #---------------------------------------------------------------------------------
 $(GFXBUILD)/%.t3x	$(BUILD)/%.h	:	%.t3s
