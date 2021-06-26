@@ -11,4 +11,4 @@
 
 ## feedback from hackclub
 > "Mmm I think pong would be better without the ball"
-> - Arcade Wise
+> Arcade Wise
