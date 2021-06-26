@@ -128,6 +128,7 @@ int main(int argc, char* argv[])
 	{
 		hidScanInput();
 
+		// print current infos
 		printf("\x1b[4;3HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 		printf("\x1b[5;3HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime()*6.0f);
 		printf("\x1b[6;3HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage()*100.0f);
@@ -158,16 +159,17 @@ int main(int argc, char* argv[])
 			}
 		}
 
+		// move ball
 		moveBall();
 
 		C2D_DrawRectSolid(0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, bgColor); // Clear screen before we re-draw everything.
 		C2D_DrawRectSolid(paddle.x, paddle.y , 0, paddle.w, paddle.h, fgColor); // Draw paddle
 		C2D_DrawRectSolid(ball.x, ball.y, 0, 10, 10, fgColor); // Draw ball
 
-		// New frame
+		// Draw new frame
 		C3D_FrameEnd(0);
 
-		// Your code goes here
+		// Check keys
 		u32 kHeld = hidKeysHeld();
 		if (kHeld & KEY_START) {
 			break; // break in order to return to hbmenu
