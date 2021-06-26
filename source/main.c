@@ -171,9 +171,9 @@ int main(int argc, char* argv[])
 		u32 kHeld = hidKeysHeld();
 		if (kHeld & KEY_START) {
 			break; // break in order to return to hbmenu
-		} else if (kHeld & KEY_CPAD_LEFT) {
+		} else if (kHeld & KEY_CPAD_LEFT || kHeld & KEY_LEFT) {
 			paddleChange -= 1;
-		} else if (kHeld & KEY_CPAD_RIGHT) {
+		} else if (kHeld & KEY_CPAD_RIGHT || kHeld & KEY_RIGHT) {
 			paddleChange += 1;
 		} else {
 			paddleChange = 0;
