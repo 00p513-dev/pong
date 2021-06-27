@@ -192,8 +192,8 @@ clean:
 # Custom rules
 #---------------------------------------------------------------------------------
 
-banner.bin: assets/banner.png assets/banner.wav
-	bannertool makebanner -i assets/banner.png -a assets/banner.wav -o $(BUILD)/banner.bin
+banner.bin: assets/banner.png assets/banner.ogg
+	bannertool makebanner -i assets/banner.png -a assets/banner.ogg -o $(BUILD)/banner.bin
 
 $(TARGET).3ds: $(TARGET).elf $(TARGET).smdh assets/$(TARGET).rsf
 	makerom -f cci -o $(TARGET).3ds -rsf assets/$(TARGET).rsf -target d -exefslogo -elf $(TARGET).elf -icon $(TARGET).smdh -banner build/banner.bin
