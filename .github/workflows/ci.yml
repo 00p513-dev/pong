@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest
+  
+    steps:
+    
+      - uses: actions/checkout@v2
+
+      - name: download tools
+        run: |
+          wget https://amygrace.dev/bannertool
+          wget https://amygrace.dev/makerom
+          cp bannertool makerom /usr/bin/
+          chmod +x /usr/bin/bannertool /usr/bin/makerom
+
+      - name: build
+        run: bash build.sh
+        
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pong-ci
+          path: artifacts/*
