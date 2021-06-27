@@ -1,2 +1,2 @@
 #! /bin/bash
-$DEVKITPRO/tools/bin/3dslink pong.3dsx $1
+$DEVKITPRO/tools/bin/3dslink artifacts/pong.3dsx -a$1
