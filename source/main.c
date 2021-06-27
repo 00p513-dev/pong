@@ -24,6 +24,7 @@ typedef struct paddle_s {
 static ball_t ball;
 static paddle_t paddle;
 int score;
+float version = 0.2;
 
 int checkCollision(ball_t a, paddle_t b) {
 
@@ -32,10 +33,10 @@ int checkCollision(ball_t a, paddle_t b) {
 	int top_a, top_b;
 	int bottom_a, bottom_b;
 
-	left_a = a.x;
-	right_a = a.x + a.w;
-	top_a = a.y;
-	bottom_a = a.y + a.h;
+	left_a = a.x - 5;
+	right_a = a.x + a.w + 5;
+	top_a = a.y - 5;
+	bottom_a = a.y + a.h + 5;
 
 	left_b = b.x;
 	right_b = b.x + b.w;
@@ -43,20 +44,28 @@ int checkCollision(ball_t a, paddle_t b) {
 	bottom_b = b.y + b.h;
 
 
-	if (left_a > right_b) {
+	if (left_a >= right_b) {
 		return 0;
 	}
 
-	if (right_a < left_b) {
+	if (right_a <= left_b) {
 		return 0;
 	}
 
-	if (top_a > bottom_b) {
+	if (top_a >= bottom_b) {
 		return 0;
 	}
 
-	if (bottom_a < top_b) {
+	if (bottom_a <= top_b) {
 		return 0;
+	}
+
+	if (left_a >= right_b - 5) {
+		return 2;
+	}
+
+	if (right_a <= left_b + 5) {
+		return 2;
 	}
 
 	return 1;
@@ -85,6 +94,10 @@ void moveBall() {
 		score += 1;
 	}
 
+	if (c == 2) {
+		ball.dx = -ball.dx;
+	}
+
 	if ((ball.y > SCREEN_HEIGHT) && (c != 1)) {
 		score -= 1;
 	}
@@ -108,10 +121,10 @@ int main(int argc, char* argv[])
 	// Init
 	time_t t;
 	srand((unsigned) time(&t));
-	printf("\x1b[2;3HPong");
+	printf("\x1b[2;3HPong       version: %g", version);
 	printf("\x1b[29;3Hproudly written in nano");
 	paddle.x = SCREEN_WIDTH /2 - 25;
-	paddle.y = SCREEN_HEIGHT - 15;
+	paddle.y = SCREEN_HEIGHT - 11;
 	paddle.w = 50;
 	paddle.h = 10;
 	int paddleChange = 0;
