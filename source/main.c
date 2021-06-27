@@ -7,9 +7,6 @@
 #define SCREEN_WIDTH  320
 #define SCREEN_HEIGHT 240
 
-C2D_TextBuf g_staticBuf;
-C2D_Text g_staticText[4];
-
 typedef struct ball_s {
 	int x, y; /* position on the screen */
 	int w,h; // ball width and height
